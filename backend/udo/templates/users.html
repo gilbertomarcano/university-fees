@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Axios for making API requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1>My Profile</h1>
+                <p id="username"></p>
+                <p id="first_name"></p>
+                <p id="last_name"></p>
+                <p id="email"></p>
+                <button class="btn btn-primary" id="logout">Logout</button>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{% static 'users.js' %}"></script> -->
+    <script src="../static/users.js"></script>
+
+</body>
+</html>

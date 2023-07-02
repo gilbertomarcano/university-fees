@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Axios for making API requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1>Login</h1>
+                <input type="text" id="username" class="form-control" placeholder="Username" required><br>
+                <input type="password" id="password" class="form-control" placeholder="Password" required><br>
+                <button class="btn btn-primary" id="submit">Login</button>
+                <button class="btn btn-secondary" onclick="window.location.href = 'signup.html';">Sign Up</button>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{% static 'login.js' %}"></script> -->
+    <script src="../static/login.js"></script>
+</body>
+</html>
