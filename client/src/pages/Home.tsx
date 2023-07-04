@@ -24,7 +24,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data } = await axios.get('http://localhost:8002/users/me', {
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/me`, {
           headers: { Authorization: `Token ${token}` },
         });
         setUser(data);
@@ -38,7 +38,7 @@ const Home = () => {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:8002/users/logout', {}, {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/logout`, {}, {
         headers: { Authorization: `Token ${token}` },
       });
       localStorage.removeItem('token');

@@ -16,9 +16,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 const Login = () => {
+  const url = import.meta.env.VITE_BACKEND_URL;
   const toast = useToast();
   const navigate = useNavigate();
   const formBg = useColorModeValue('gray.200', 'gray.600');
+  console.log('gello this is the url', url)
+  console.log(import.meta.env)
 
   const [state, setState] = React.useState({
     username: '',
@@ -39,7 +42,7 @@ const Login = () => {
         isClosable: true,
       });
     } else {
-      const { data } = await axios.post<{ token: string }>('http://localhost:8002/users/auth', {
+      const { data } = await axios.post<{ token: string }>(`${import.meta.env.VITE_BACKEND_URL}/users/auth`, {
         username: state.username,
         password: state.password,
       });

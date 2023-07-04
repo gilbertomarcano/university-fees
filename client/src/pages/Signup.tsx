@@ -38,7 +38,7 @@ const Signup = () => {
       });
     } else {
       try {
-        const { data } = await axios.post<{ token: string }>('http://localhost:8002/users/signup', {
+        const { data } = await axios.post<{ token: string }>(`${import.meta.env.VITE_BACKEND_URL}/users/signup`, {
           username: state.username,
           password: state.password,
           email: state.email,
