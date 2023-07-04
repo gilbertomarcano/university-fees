@@ -14,7 +14,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Make port 3000 available to the outside world
+# Make port 5173 available to the outside world
 EXPOSE 5173
 
 # Define environment variable
