@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'users',
-    'grades'
+    'students',
+    'grades',
 ]
 
 AUTH_USER_MODEL = 'users.User'
