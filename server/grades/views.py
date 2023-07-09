@@ -18,7 +18,7 @@ def student_grades(request, student_id):
     return HttpResponse(grades_list, content_type="text/json-comment-filtered")
 
 
-def studentTermGrades(request, student_id, term):
+def student_term_grades(request, student_id, term):
     grades = Grade.objects.filter(student_id=student_id, term=term)
     # we return grades as a json object 
     grades_list = serializers.serialize('json', grades)
