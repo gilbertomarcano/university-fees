@@ -7,5 +7,9 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse("index view")
 
-def grades(request):
-    return HttpResponse("grades view")
+# this view returns all grades for a student
+def studentGrades(request, studentId):
+    return HttpResponse(f"grades for student {studentId}")
+
+def studentTermGrades(request, studentId, term):
+    return HttpResponse(f"grades for student {studentId} in term {term}")
