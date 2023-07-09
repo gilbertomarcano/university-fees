@@ -9,4 +9,5 @@ pytz==2023.3
 requests==2.31.0
 sqlparse==0.4.4
 typing_extensions==4.6.3
+xhtml2pdf==0.2.11
 urllib3==2.0.3
