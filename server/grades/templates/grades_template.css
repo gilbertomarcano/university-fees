@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #003a63;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #003a63;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #003a63;
+    margin-top: 20px;
+}
+
+p {
+    color: #003a63;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #003a63;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
