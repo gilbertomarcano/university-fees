@@ -83,36 +83,6 @@ const Home = () => {
             Log Out
           </Button>
         </VStack>
-        <VStack
-          flexGrow={0}
-          boxShadow={'2xl'}
-          p={8}
-          ml={6}
-          rounded={'xl'}
-          bg={useColorModeValue('white', 'gray.800')}
-          spacing={6}
-          width="100%"
-          maxWidth={{ base: '90%', md: '80%', lg: '60%' }}
-        >
-          <Button onClick={handleLogout} type="submit" colorScheme="red" size="lg" fontSize="md">
-            Log Out
-          </Button>
-          <Button onClick={handleLogout} type="submit" colorScheme="red" size="lg" fontSize="md">
-            Log Out
-          </Button>
-          <Button onClick={handleLogout} type="submit" colorScheme="red" size="lg" fontSize="md">
-            Log Out
-          </Button>
-          <Button onClick={handleLogout} type="submit" colorScheme="red" size="lg" fontSize="md">
-            Log Out
-          </Button>
-          <Button onClick={handleLogout} type="submit" colorScheme="red" size="lg" fontSize="md">
-            Log Out
-          </Button>
-          <Button onClick={handleLogout} type="submit" colorScheme="red" size="lg" fontSize="md">
-            Log Out
-          </Button>
-        </VStack>
       </Flex>
     </Container>
   );

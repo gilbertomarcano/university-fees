@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
-    'users'
+    'users',
+    'students',
 ]
 
 AUTH_USER_MODEL = 'users.User'
