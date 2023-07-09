@@ -11,15 +11,15 @@ def index(request):
     return HttpResponse("index view")
 
 # this view returns all grades for a student
-def studentGrades(request, studentId):
-    grades = Grade.objects.filter(studentId=studentId)
+def student_grades(request, student_id):
+    grades = Grade.objects.filter(student_id=student_id)
     # we return grades as a json object
     grades_list = serializers.serialize('json', grades)
     return HttpResponse(grades_list, content_type="text/json-comment-filtered")
 
 
-def studentTermGrades(request, studentId, term):
-    grades = Grade.objects.filter(studentId=studentId, term=term)
+def studentTermGrades(request, student_id, term):
+    grades = Grade.objects.filter(student_id=student_id, term=term)
     # we return grades as a json object 
     grades_list = serializers.serialize('json', grades)
     return HttpResponse(grades_list, content_type="text/json-comment-filtered")
