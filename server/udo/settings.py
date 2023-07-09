@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
-    'users'
+    'users',
+    'grades.apps.GradesConfig'
 ]
 
 AUTH_USER_MODEL = 'users.User'
