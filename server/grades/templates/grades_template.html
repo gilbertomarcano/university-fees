@@ -61,6 +61,18 @@ tr:nth-child(even) {
     width: 80px;  /* You can adjust this if you need to */
     height: 80px;  /* You can adjust this if you need to */
 }
+
+.course-id-col {
+    width: 10%;  /* Adjust these values based on your requirements */
+}
+
+.course-name-col {
+    width: 60%;
+}
+
+.course-grade-col {
+    width: 30%;
+}
 </style>
 </head>
 <body>
@@ -87,8 +99,9 @@ tr:nth-child(even) {
                 <thead>
                     <tr>
                         <!-- <th scope="col">#</th> -->
-                        <th scope="col">Course ID</th>
-                        <th scope="col">Grade</th>
+                        <th scope="col" class="course-id-col">Course ID</th>
+                        <th scope="col" class="course-name-col">Course Name</th>
+                        <th scope="col" class="course-grade-col">Grade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,8 +109,9 @@ tr:nth-child(even) {
                     <tr>
                         <!-- <th scope="row">{{ forloop.counter }}</th> -->
                         <!-- assuming you have a way to get course name from course_id -->
-                        <td>{{ course.course_id }}</td>
-                        <td>{{ course.grade }}</td>
+                        <td class="course-id-col">{{ course.course_id }}</td>
+                        <td class="course-name-col">{{ course.name }}</td>
+                        <td class="course-grade-col">{{ course.grade }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

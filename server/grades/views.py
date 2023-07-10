@@ -13,6 +13,7 @@ from xhtml2pdf import pisa
 
 from .models import Grade
 from students.models import Student, CareerChoices, VenezuelanRegionChoices
+from course.models import Course, get_course_name_by_enum
 from users.models import User
 
 # Create your views here.
@@ -47,10 +48,16 @@ def student_general_report(request, student_id):
     print(user)
 
     for course in grades:
+        course_enum = Course.objects.get(course_id=course.course_id).course_name
+        course.name = get_course_name_by_enum(course_enum)
         if course.term not in terms:
+            # course.name = 
             terms[course.term] = [course]
+            print(course_enum, course.name)
+            print(course.name)
         else:
             terms[course.term].append(course)
+
 
     # we convert student career to their name on CareerChoices, using integers as keys
     # we find the dict that contains student.career

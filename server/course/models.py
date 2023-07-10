@@ -16,6 +16,13 @@ class CoursesChoices(models.TextChoices):
     TALLERPROGRAMACIONAVANZADA = "TPA", "Taller de Programación Avanzada"
     TALLERPROGRAMACIONLINEAL = "TPL", "Taller de Programación Lineal"
 
+def get_course_name_by_enum(name_enum):
+        
+    for course in CoursesChoices.choices:
+        if course[0] == name_enum:
+            course_name = course[1]
+            return course_name
+
 class Course(models.Model):
     course_id = models.CharField(max_length=10, primary_key=True)
     course_name = models.CharField(max_length=32, choices=CoursesChoices.choices)
@@ -30,12 +37,4 @@ class Course(models.Model):
 
         return f"{self.course_id}: {self.course_name}, {course_name}"
     
-    def get_name_enum_value(self):
-        course_name = ""
-         
-        for course in CoursesChoices.choices:
-            if course[0] == self.course_name:
-                course_name = course[1]
-                break
-
-        return course_name
+   
