@@ -45,6 +45,10 @@ const PaymentList = () => {
     navigate(`/payments/deposit`);
   };
 
+  const handleUpload = async () => {
+    navigate(`/payments/upload`);
+  };
+
   return (
     <Container
       height="100vh"
@@ -64,6 +68,9 @@ const PaymentList = () => {
         </Heading>
         <Button onClick={handleDeposit} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
           Ingresar deposito
+        </Button>
+        <Button onClick={handleUpload} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
+          Cargar depositos
         </Button>
         <Table variant="simple">
           <Thead>

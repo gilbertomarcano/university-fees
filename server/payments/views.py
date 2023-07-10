@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+import pandas as pd
 
 from .models import Payment
 from .models import User
@@ -90,3 +91,46 @@ class PaymentVerifyReference(APIView):
         payment.save()
         
         return Response({"status": "Successfully claimed"}, status=status.HTTP_201_CREATED)
+
+from django.http import HttpResponseRedirect
+from payments.forms import UploadFileForm
+
+class UploadPayments(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        file = request.FILES['file']
+        
+        if not file:
+            return Response({"error": "No file uploaded"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Leer el archivo Excel usando pandas
+            df = pd.read_excel(file)            
+            required_columns = ['Date', 'Reference', 'Description', 'Amount', 'Balance']
+
+            # Iterar sobre las filas del DataFrame
+            data = []
+            for _, row in df[required_columns].iterrows():
+                # Crear un diccionario para cada fila y asignar los valores correspondientes
+                payment_data = {
+                    'date': row['Date'],
+                    'reference': row['Reference'],
+                    'description': row['Description'],
+                    'amount': row['Amount'],
+                    'balance': row['Balance']
+                    }
+                # Agregar el diccionario a la lista de datos
+                data.append(payment_data)
+    
+            # Validar y guardar los datos en la tabla de pagos
+            serializer = PaymentSerializer(data=data, many=True)
+            
+            if serializer.is_valid():
+                serializer.save()
+                return Response({"message": "File uploaded successfully"}, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

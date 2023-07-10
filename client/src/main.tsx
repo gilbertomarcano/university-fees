@@ -13,6 +13,7 @@ import UserList from "./pages/ListUsers.tsx";
 import PaymentList from "./pages/payments/Payments.tsx";
 import Deposit from "./pages/payments/Deposit.tsx";
 import DepositReference from "./pages/payments/DepositReference.tsx";
+import UploadDeposits from "./pages/payments/Upload.tsx";
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/payments/deposit',
         element: <DepositReference />
+      },
+      {
+        path: '/payments/upload',
+        element: <UploadDeposits />
       },
       {
         path: '/signup',
