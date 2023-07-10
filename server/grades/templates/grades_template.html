@@ -76,8 +76,10 @@ tr:nth-child(even) {
         <hr>
         
         <h3>Student Information</h3>
-        <p><strong>Name: </strong> {{ student.name }}</p>
-        <p><strong>ID: </strong> {{ student.id }}</p>
+        <p><strong>Name: </strong> {{ user.first_name }} {{user.last_name}}</p>
+        <p><strong>ID: </strong> {{student.national_id_prefix}}-{{ student.national_id_number }}</p>
+        <p><strong>Career: </strong> {{ student.career }}</p>
+        <p><strong>Region: </strong> {{ student.region }}</p>
         
         {% for term, courses in terms.items %}
             <h3>Semestre {{ term }}</h3>
