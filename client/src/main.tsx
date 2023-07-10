@@ -10,6 +10,9 @@ import Signup from "./pages/Signup.tsx";
 import CompleteSignup from "./pages/CompleteSignup.tsx";
 import Admin from "./pages/Admin.tsx";
 import UserList from "./pages/ListUsers.tsx";
+import PaymentList from "./pages/payments/Payments.tsx";
+import Deposit from "./pages/payments/Deposit.tsx";
+import DepositReference from "./pages/payments/DepositReference.tsx";
 
 
 const router = createBrowserRouter([
@@ -32,6 +35,18 @@ const router = createBrowserRouter([
       {
         path: '/users',
         element: <UserList />
+      },
+      {
+        path: '/payments',
+        element: <PaymentList />
+      },
+      {
+        path: '/payments/deposit/:id',
+        element: <Deposit />
+      },
+      {
+        path: '/payments/deposit',
+        element: <DepositReference />
       },
       {
         path: '/signup',

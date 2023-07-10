@@ -9,7 +9,7 @@ class Payment(models.Model):
     description = models.CharField(max_length=128)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     balance = models.DecimalField(max_digits=8, decimal_places=2)
-    user = models.ForeignKey(to = User, on_delete=models.CASCADE)
+    user = models.ForeignKey(blank=True,null=True, to = User, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.reference
