@@ -93,13 +93,13 @@ const Signup = () => {
         maxWidth={{ base: '90%', md: '80%', lg: '60%' }}
       >
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
-          Sign Up
+          Registro
         </Heading>
 
         <form onSubmit={handleSubmit}>
           <Stack spacing="6">
           <FormControl id="first_name">
-              <FormLabel>First Name</FormLabel>
+              <FormLabel>Nombre</FormLabel>
               <Input
               name="first_name"
               type="first_name"
@@ -109,7 +109,7 @@ const Signup = () => {
               />
           </FormControl>
           <FormControl id="last_name">
-              <FormLabel>Last Name</FormLabel>
+              <FormLabel>Apellido</FormLabel>
               <Input
               name="last_name"
               type="last_name"
@@ -119,7 +119,7 @@ const Signup = () => {
               />
           </FormControl>
           <FormControl id="email">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Correo</FormLabel>
                 <Input
                 name="email"
                 type="email"
@@ -129,7 +129,7 @@ const Signup = () => {
                 />
             </FormControl>
             <FormControl id="password">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Contraseña</FormLabel>
                 <Input
                 name="password"
                 type="password"
@@ -140,10 +140,10 @@ const Signup = () => {
             </FormControl>
             
             <Button type="submit" colorScheme="teal" size="lg" fontSize="md">
-                Sign Up
+                Comenzar Registro
             </Button>
             <Button onClick={handleLogout} colorScheme="teal" size="lg" fontSize="md" variant="outline">
-                Logout
+                Cerrar Sesión
             </Button>
           </Stack>
         </form>

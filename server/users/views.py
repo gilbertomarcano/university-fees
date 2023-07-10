@@ -30,6 +30,30 @@ class UserRetrieve(APIView):
         return Response(serializer.data)
 
 
+class UserList(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        users = User.objects.all().order_by('-id')
+        serializer = UserSerializer(users, many=True)
+
+        # Paginated data
+        page = int(request.query_params.get('page', 1))
+        page_size = int(request.query_params.get('page_size', 5))
+        count = users.count()
+        start_index = (page - 1) * page_size
+        end_index = page * page_size
+        users = serializer.data[start_index:end_index]
+
+        response_data = {
+            'count': count,
+            'page': page,
+            'page_size': page_size,
+            'data': users
+        }
+        return Response(response_data)
+
+
 class CurrentUserRetrieve(APIView):
     permission_classes = [IsAuthenticated]
 

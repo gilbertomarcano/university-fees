@@ -79,12 +79,12 @@ const Login = () => {
         maxWidth={{ base: '90%', md: '80%', lg: '60%' }}
       >
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
-          Login
+          Bienvenido
         </Heading>
         <form onSubmit={handleSubmit}>
           <Stack spacing="6">
             <FormControl id="username">
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Correo</FormLabel>
               <Input
                 name="username"
                 type="username"
@@ -95,7 +95,7 @@ const Login = () => {
               />
             </FormControl>
             <FormControl id="password">
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Contraseña</FormLabel>
               <Input
                 name="password"
                 type="password"
@@ -105,7 +105,7 @@ const Login = () => {
               />
             </FormControl>
             <Button type="submit" colorScheme="teal" size="lg" fontSize="md">
-              Login
+              Iniciar Sesión
             </Button>
           </Stack>
         </form>
