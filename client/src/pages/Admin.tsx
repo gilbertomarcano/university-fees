@@ -22,6 +22,10 @@ const Admin = () => {
     navigate('/users');
   }
 
+  const handleListPayments = () => {
+    navigate('/payments');
+  }
+
   const handleLogout = async () => {
     console.log("XD")
     try {
@@ -61,6 +65,9 @@ const Admin = () => {
         </Button>
         <Button onClick={handleListUsers} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
           Listar Usuarios
+        </Button>
+        <Button onClick={handleListPayments} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
+          Listar Pagos
         </Button>
         <Button onClick={handleLogout} colorScheme="teal" size="lg" width="80%" fontSize="md" variant="outline">
           Cerrar Sesión
