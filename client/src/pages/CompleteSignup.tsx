@@ -192,10 +192,10 @@ const CompleteSignup = () => {
                 </HStack>
             </FormControl>
             <Button type="submit" colorScheme="teal" size="lg" fontSize="md">
-                Complete Sign Up
+                Completar Registro
             </Button>
             <Button onClick={handleLogout} colorScheme="teal" size="lg" fontSize="md" variant="outline">
-                Logout
+                Cerrar Sesión
             </Button>
           </Stack>
         </form>
