@@ -11,6 +11,8 @@ from io import BytesIO
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
+from students.models import Student
+
 from .models import Grade
 from students.models import Student, CareerChoices, VenezuelanRegionChoices
 from course.models import Course, get_course_name_by_enum
@@ -22,7 +24,8 @@ def index(request):
 
 # this view returns all grades for a student
 def student_grades(request, student_id):
-    grades = Grade.objects.filter(student_id=student_id)
+    student = Student.objects.get(user=student_id)
+    grades = Grade.objects.filter(student_id=student.id)
     # we return grades as a json object
     grades_list = serializers.serialize('json', grades)
     return HttpResponse(grades_list, content_type="text/json-comment-filtered")

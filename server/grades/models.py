@@ -1,12 +1,15 @@
 from django.db import models
 from course.models import Course, CoursesChoices
 
+from students.models import Student
+
 # Create your models here.
 # We create a model for class grade tracking
 class Grade(models.Model):
     # this should be a foreign key to a student model
     # we should change this to student_id
-    student_id = models.IntegerField()
+    student = models.ForeignKey(to=Student, on_delete=models.CASCADE)
+    # student_id = models.IntegerField()
     # term
     term = models.IntegerField(default=0)
     # this should be a foreign key to a course model

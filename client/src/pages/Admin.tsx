@@ -54,16 +54,16 @@ const Admin = () => {
         maxWidth={{ base: '90%', md: '80%', lg: '60%' }}
       >
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
-          Admin Dashboard
+          Panel Administrativo
         </Heading>
         <Button onClick={handleNewUser} type="button" width="80%" colorScheme="blue" size="lg" fontSize="md">
-          Sign Up New User
+          Crear Usuario
         </Button>
         <Button onClick={handleListUsers} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
-          List Users
+          Listar Usuarios
         </Button>
         <Button onClick={handleLogout} colorScheme="teal" size="lg" width="80%" fontSize="md" variant="outline">
-          Logout
+          Cerrar Sesión
         </Button>
       </VStack>
     </Container>

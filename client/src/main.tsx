@@ -9,6 +9,7 @@ import Home from "./pages/Home.tsx";
 import Signup from "./pages/Signup.tsx";
 import CompleteSignup from "./pages/CompleteSignup.tsx";
 import Admin from "./pages/Admin.tsx";
+import UserList from "./pages/ListUsers.tsx";
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <Admin />
       },
       {
+        path: '/users',
+        element: <UserList />
+      },
+      {
         path: '/signup',
         element: <Signup />
       },
@@ -38,6 +43,15 @@ const router = createBrowserRouter([
       }
     ]
   },
+  // {
+  //   path: "/",
+  //   children: [
+  //     {
+  //       path: '/users',
+  //       element: <UserList />
+  //     },
+  //   ]
+  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
