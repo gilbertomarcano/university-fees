@@ -28,7 +28,8 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!state.username || !state.password) {
+    console.log(state)
+    if (!state.email || !state.password) {
       toast({
         title: "Invalid Input",
         description: "Both username and password must be provided.",
@@ -39,13 +40,15 @@ const Signup = () => {
     } else {
       try {
         const { data } = await axios.post<{ token: string }>(`${import.meta.env.VITE_BACKEND_URL}/users/signup`, {
-          username: state.username,
+          username: state.email,
           password: state.password,
           email: state.email,
           first_name: state.first_name,
           last_name: state.last_name
         })
-        navigate('/')
+        console.log(data)
+        // Navigate to CompleteSignup with the user id.
+        navigate(`/signup/${data.id}/complete`);
       } catch (error) {
         toast({
           title: "Sign up error",
@@ -55,6 +58,20 @@ const Signup = () => {
           isClosable: true,
         });
       }
+    }
+  };
+
+  const handleLogout = async () => {
+    console.log("XD")
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/logout`, {}, {
+        headers: { Authorization: `Token ${token}` },
+      });
+      localStorage.removeItem('token');
+      navigate('/');
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -81,14 +98,33 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit}>
           <Stack spacing="6">
-            <FormControl id="username">
-                <FormLabel>Username</FormLabel>
+          <FormControl id="first_name">
+              <FormLabel>First Name</FormLabel>
+              <Input
+              name="first_name"
+              type="first_name"
+              required
+              value={state.first_name}
+              onChange={handleChange}
+              />
+          </FormControl>
+          <FormControl id="last_name">
+              <FormLabel>Last Name</FormLabel>
+              <Input
+              name="last_name"
+              type="last_name"
+              required
+              value={state.last_nmame}
+              onChange={handleChange}
+              />
+          </FormControl>
+          <FormControl id="email">
+                <FormLabel>Email</FormLabel>
                 <Input
-                name="username"
-                type="username"
-                autoComplete="username"
+                name="email"
+                type="email"
                 required
-                value={state.username}
+                value={state.email}
                 onChange={handleChange}
                 />
             </FormControl>
@@ -102,41 +138,12 @@ const Signup = () => {
                 onChange={handleChange}
                 />
             </FormControl>
-            <FormControl id="email">
-                <FormLabel>Email</FormLabel>
-                <Input
-                name="email"
-                type="email"
-                required
-                value={state.email}
-                onChange={handleChange}
-                />
-            </FormControl>
-            <FormControl id="first_name">
-                <FormLabel>First Name</FormLabel>
-                <Input
-                name="first_name"
-                type="first_name"
-                required
-                value={state.first_name}
-                onChange={handleChange}
-                />
-            </FormControl>
-            <FormControl id="last_name">
-                <FormLabel>Last Name</FormLabel>
-                <Input
-                name="last_name"
-                type="last_name"
-                required
-                value={state.last_nmame}
-                onChange={handleChange}
-                />
-            </FormControl>
+            
             <Button type="submit" colorScheme="teal" size="lg" fontSize="md">
                 Sign Up
             </Button>
-            <Button colorScheme="teal" size="lg" fontSize="md" variant="outline" onClick={() => navigate('/')}>
-                Login
+            <Button onClick={handleLogout} colorScheme="teal" size="lg" fontSize="md" variant="outline">
+                Logout
             </Button>
           </Stack>
         </form>

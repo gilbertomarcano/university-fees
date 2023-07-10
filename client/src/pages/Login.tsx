@@ -20,8 +20,6 @@ const Login = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const formBg = useColorModeValue('gray.200', 'gray.600');
-  console.log('gello this is the url', url)
-  console.log(import.meta.env)
 
   const [state, setState] = React.useState({
     username: '',
@@ -48,7 +46,18 @@ const Login = () => {
       });
 
       localStorage.setItem('token', data.token);
-      navigate('/home');
+      const userData = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/me`, {
+        headers: { Authorization: `Token ${data.token}` },
+      });
+      if (userData.data.is_staff) {
+        navigate('/admin');
+      } else {
+        if (userData.data.is_student) {
+          navigate('/home');
+        } else {
+          alert('Contact Admin')
+        }
+      }
     }
   };
 
@@ -97,9 +106,6 @@ const Login = () => {
             </FormControl>
             <Button type="submit" colorScheme="teal" size="lg" fontSize="md">
               Login
-            </Button>
-            <Button colorScheme="teal" size="lg" fontSize="md" variant="outline" onClick={() => navigate('/signup')}>
-              Sign up
             </Button>
           </Stack>
         </form>

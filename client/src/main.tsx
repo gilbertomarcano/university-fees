@@ -7,6 +7,8 @@ import Login from "./pages/Login.tsx";
 import Layout from "./Layout.tsx";
 import Home from "./pages/Home.tsx";
 import Signup from "./pages/Signup.tsx";
+import CompleteSignup from "./pages/CompleteSignup.tsx";
+import Admin from "./pages/Admin.tsx";
 
 
 const router = createBrowserRouter([
@@ -23,8 +25,16 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
+        path: '/admin',
+        element: <Admin />
+      },
+      {
         path: '/signup',
         element: <Signup />
+      },
+      {
+        path: '/signup/:id/complete',
+        element: <CompleteSignup />
       }
     ]
   },
