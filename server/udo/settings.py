@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'students',
     'grades',
+    'course'
 ]
 
 AUTH_USER_MODEL = 'users.User'
