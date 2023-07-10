@@ -39,15 +39,9 @@ def student_term_grades(request, student_id, term):
 
 def student_general_report(request, student_id):
     terms = {}
-    # we get national id prefix and number from student_id
-    student_id_str = str(student_id)
-    id_prefix = student_id_str[0]
-    id_number = student_id_str[1:]
-    print(id_prefix, id_number)
 
-    student = Student.objects.get(national_id_prefix=id_prefix,national_id_number=int(id_number))
-    print(student)
-    grades = Grade.objects.filter(student_id=id_number)
+    student = Student.objects.get(user=student_id)
+    grades = Grade.objects.filter(student_id=student.id)
     user = User.objects.get(id=student.user_id)
     print(user)
 
