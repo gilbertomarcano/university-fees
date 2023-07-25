@@ -5,11 +5,11 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 import pandas as pd
 
-from .models import Payment
-from .models import User
+from .models import Payment, User
 from .serializers import PaymentSerializer
 
 # Create your views here.
+
 class ViewPayment(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -41,7 +41,6 @@ class PaymentList(APIView):
         }
         return Response(response_data)
     
-    
 class PaymentCreate(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -51,7 +50,6 @@ class PaymentCreate(APIView):
             Payment = serializer.save()  # Guarda el Payment en la base de datos
             return Response(PaymentSerializer(Payment).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class PaymentVerify(APIView):
     permission_classes = [IsAuthenticated]
