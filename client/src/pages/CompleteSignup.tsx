@@ -50,6 +50,7 @@ const CompleteSignup = () => {
         const regionResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/students/regions`, {
           headers: { Authorization: `Token ${token}` },
         });
+        console.log(regionResponse.data)
         setRegions(regionResponse.data);
 
         const genderResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/students/genders`, {

@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'users',
+    'payments',
     'students',
     'grades',
+    'schedules',
+    'syllabus',
     'course'
 ]
 
