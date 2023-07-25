@@ -7,5 +7,5 @@ urlpatterns = [
     path('verify/<int:payment_id>', PaymentVerify.as_view(), name='verify_payment'),
     path('verify', PaymentVerifyReference.as_view(), name='verify_payment_reference'),
     path('<int:payment_id>', ViewPayment.as_view(), name='view_payment'),
-    path('upload', UploadPayments.as_view(), name='upload_payments'),
+    path('upload', UploadPayments.as_view(), name='upload_subjects'),
 ]

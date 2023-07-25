@@ -20,7 +20,7 @@ const Admin = () => {
 
   const handleListUsers = () => {
     navigate('/users');
-  }
+  } 
 
   const handleListPayments = () => {
     navigate('/payments');
