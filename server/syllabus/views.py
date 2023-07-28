@@ -58,7 +58,7 @@ class SubjectUpload(APIView):
                     raise ValidationError(f"The code '{code}' already exists in the database.")
 
                 subject_data = {
-                    'career': row['Career'],
+                    'career': Career.objects.get(name=row['Career']).id,
                     'semester': row['Semester'],
                     'name': row['Name'],
                     'code': code,
