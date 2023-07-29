@@ -52,7 +52,7 @@ const Login = () => {
       if (userData.data.is_staff) {
         navigate('/admin');
       } else {
-        if (userData.data.is_student) {
+        if (userData.data.student) {
           navigate('/home');
         } else {
           alert('Contact Admin')

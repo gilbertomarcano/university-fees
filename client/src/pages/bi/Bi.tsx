@@ -14,21 +14,14 @@ const Admin = () => {
   const navigate = useNavigate();
   const adminBg = useColorModeValue('gray.200', 'gray.600');
 
-  const handleNewUser = () => {
-    navigate('/signup');
+  const handleCareer = () => {
+    navigate('/bi/career');
   }
 
-  const handleListUsers = () => {
-    navigate('/users');
+  const handlePerformance = () => {
+    navigate('/bi/performance');
   } 
 
-  const handleListPayments = () => {
-    navigate('/payments');
-  }
-
-  const handleBI = () => {
-    navigate('/bi');
-  }
 
   const handleLogout = async () => {
     try {
@@ -61,19 +54,13 @@ const Admin = () => {
         maxWidth={{ base: '90%', md: '80%', lg: '60%' }}
       >
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
-          Panel Administrativo
+          Panel De Analisis
         </Heading>
-        <Button onClick={handleNewUser} type="button" width="80%" colorScheme="blue" size="lg" fontSize="md">
-          Crear Usuario
+        <Button onClick={handleCareer} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
+          Analisis de Carreras
         </Button>
-        <Button onClick={handleListUsers} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
-          Listar Usuarios
-        </Button>
-        <Button onClick={handleListPayments} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
-          Listar Pagos
-        </Button>
-        <Button onClick={handleBI} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
-          Analisis de Datos
+        <Button onClick={handlePerformance} type="button" width="80%" colorScheme="teal" size="lg" fontSize="md">
+          Analisis de Calificaciones
         </Button>
         <Button onClick={handleLogout} colorScheme="teal" size="lg" width="80%" fontSize="md" variant="outline">
           Cerrar Sesión

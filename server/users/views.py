@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -35,7 +36,20 @@ class UserList(APIView):
 
     def get(self, request):
         users = User.objects.all().order_by('-id')
+
+        # Search
+        search = request.query_params.get('search')
+        if search:
+            users = users.filter(
+                Q(first_name__icontains=search) |
+                Q(last_name__icontains=search) |
+                Q(email__icontains=search)
+            ).distinct()
+
+        # Serialize
         serializer = UserSerializer(users, many=True)
+
+        
 
         # Paginated data
         page = int(request.query_params.get('page', 1))
@@ -64,6 +78,7 @@ class CurrentUserRetrieve(APIView):
 
 class UserAuth(APIView):
     def post(self, request):
+        print('xd')
         username = request.data.get("username")
         password = request.data.get("password")
         user = authenticate(username=username, password=password)
