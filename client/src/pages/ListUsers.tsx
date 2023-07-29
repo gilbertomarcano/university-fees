@@ -9,23 +9,36 @@ import {
   Container,
   Heading,
   VStack,
+  Input,
   Button,
   HStack,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const UserList = () => {
+const ListUsers = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = React.useState(''); // Search term state
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = React.useState(searchTerm);
   const [users, setUsers] = React.useState([]);
   const [page, setPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(1);
 
   React.useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500); // 500ms delay
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchTerm]);
+
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users?page=${page}`, {
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/?page=${page}&search=${debouncedSearchTerm}`, {
           headers: { Authorization: `Token ${token}` },
         });
         setUsers(data.data);
@@ -35,14 +48,15 @@ const UserList = () => {
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, debouncedSearchTerm]);
 
-  const handleDraftClick = (userId) => {
+  const handleDraftClick = (userId: number) => {
     navigate(`/signup/${userId}/complete`);
   };
 
-  const handleGradesClick = (userId) => {
-    navigate(`/signup/${userId}/complete`);
+  const handleGradesClick = (studentId: number) => {
+    console.log(studentId)
+    navigate(`/students/${studentId}/grades`)
   };
 
   return (
@@ -62,6 +76,11 @@ const UserList = () => {
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
           Lista de Usuarios
         </Heading>
+        <Input // Add search input
+          placeholder="Buscar usuario..."
+          value={searchTerm}
+          onChange={(e) => {console.log("search"); setSearchTerm(e.target.value)}}
+        />
         <Table variant="simple">
           <Thead>
             <Tr>
@@ -79,15 +98,15 @@ const UserList = () => {
                 <Td>{user.first_name}</Td>
                 <Td>{user.last_name}</Td>
                 <Td>{user.email}</Td>
-                <Td>{user.is_student ? 'Sí' : 'No'}</Td>
+                <Td>{user.student ? 'Sí' : 'No'}</Td>
                 <Td>
-                  {!user.is_student && (
+                  {!user.student && !user.is_staff && (
                     <Button onClick={() => handleDraftClick(user.id)}>Borrador</Button>
                   )}
                 </Td>
                 <Td>
-                  {user.is_student && (
-                    <Button onClick={() => handleGradesClick(user.id)}>Ver Notas</Button>
+                  {user.student && (
+                    <Button onClick={() => handleGradesClick(user.student)}>Ver Notas</Button>
                   )}
                 </Td>
               </Tr>
@@ -107,4 +126,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default ListUsers;

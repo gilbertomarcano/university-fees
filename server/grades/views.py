@@ -24,7 +24,7 @@ def index(request):
 
 # this view returns all grades for a student
 def student_grades(request, student_id):
-    student = Student.objects.get(user=student_id)
+    student = Student.objects.get(id=student_id)
     grades = Grade.objects.filter(student_id=student.id)
     # we return grades as a json object
     grades_list = serializers.serialize('json', grades)
@@ -104,3 +104,38 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+from faker import Faker
+from students.models import Student, CareerChoices, VenezuelanRegionChoices, NationalIdPrefixChoices, GenderChoices
+from grades.models import Grade
+from users.models import User
+import random
+import numpy as np
+
+fake = Faker()
+
+# print(User.objects.filter(student__isnull=False).delete())
+# # Create 100 users
+# for i in range(100):
+#     # Create User
+#     email = fake.email()
+#     password = "test"
+#     first_name = fake.first_name()
+#     last_name = fake.last_name()
+#     user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+
+#     # Create Student
+#     career = random.choice(list(CareerChoices))
+#     region = random.choice(list(VenezuelanRegionChoices))
+#     national_id_prefix = random.choices(list(NationalIdPrefixChoices), weights=[70, 30], k=1)[0]  # Adjusting the distribution of V and E students
+#     national_id_number = str(random.randint(1000000, 9999999))
+#     gender = random.choice(list(GenderChoices))
+#     student = Student.objects.create(user=user, career=career, region=region, national_id_prefix=national_id_prefix, national_id_number=national_id_number, gender=gender)
+
+#     # Create Grades for the Student
+#     for term in range(1, 4):  # Assuming 3 terms
+#         course_ids = random.sample(range(100, 200), 4)  # Select 4 unique course_ids
+#         for course_id in course_ids:
+#             # Use a beta distribution to make grades cluster around 7 or 8
+#             grade_value = round(min(np.random.beta(2, 1.5) * 10, 10), 2)
+#             Grade.objects.create(student=student, term=term, course_id=course_id, grade=grade_value)

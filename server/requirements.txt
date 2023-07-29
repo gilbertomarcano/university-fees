@@ -5,6 +5,8 @@ Django==4.2.2
 django-cors-headers==4.1.0
 djangorestframework==3.14.0
 idna==3.4
+pandas==2.0.3
+faker==19.0.2
 pytz==2023.3
 requests==2.31.0
 sqlparse==0.4.4

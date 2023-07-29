@@ -23,6 +23,16 @@ class StudentCreate(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class StudentRetrieve(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, student_id):
+        student = Student.objects.get(id=student_id)
+        serializer = StudentSerializer(instance=student)
+        data = serializer.data
+        return Response(data=data)
+
+
 class StudentCareers(APIView):
     permission_classes = [IsAuthenticated]
 

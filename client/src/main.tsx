@@ -9,7 +9,8 @@ import Home from "./pages/Home.tsx";
 import Signup from "./pages/Signup.tsx";
 import CompleteSignup from "./pages/CompleteSignup.tsx";
 import Admin from "./pages/Admin.tsx";
-import UserList from "./pages/ListUsers.tsx";
+import ListUsers from "./pages/ListUsers.tsx";
+import ListGrades from "./pages/ListGrades.tsx";
 import PaymentList from "./pages/payments/Payments.tsx";
 import Deposit from "./pages/payments/Deposit.tsx";
 import DepositReference from "./pages/payments/DepositReference.tsx";
@@ -19,6 +20,9 @@ import SubjectForm from "./pages/syllabus/SubjectForm.tsx";
 import SubjectDetail from "./pages/syllabus/SubjectDetail.tsx";
 import SubjectDelete from "./pages/syllabus/SubjectDelete.tsx";
 import SubjectUpload from "./pages/syllabus/SubjectUpload.tsx";
+import BIPerformance from "./pages/bi/Performance.tsx";
+import BICareer from "./pages/bi/Career.tsx";
+import Bi from "./pages/bi/Bi.tsx";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/users',
-        element: <UserList />
+        element: <ListUsers />
+      },
+      {
+        path: '/students/:id/grades',
+        element: <ListGrades />
       },
       {
         path: '/payments',
@@ -88,7 +96,20 @@ const router = createBrowserRouter([
       {
         path: '/signup/:id/complete',
         element: <CompleteSignup />
+      },
+      {
+        path: '/bi',
+        element: <Bi />
+      },
+      {
+        path: '/bi/performance',
+        element: <BIPerformance/>
+      },
+      {
+        path: '/bi/career',
+        element: <BICareer/>
       }
+      
     ]
   },
   // {
