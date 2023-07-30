@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'students',
     'grades',
     'schedules',
-    'syllabus'
+    'syllabus',
+    'course'
 ]
 
 AUTH_USER_MODEL = 'users.User'

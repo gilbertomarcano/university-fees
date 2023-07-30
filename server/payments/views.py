@@ -58,11 +58,13 @@ class PaymentVerify(APIView):
         payment = get_object_or_404(Payment, id=payment_id)
         serializer = PaymentSerializer(Payment)        
         if payment.user:
+            print("Payment already claimed")
             return Response({"error": "Payment already claimed"}, status=status.HTTP_400_BAD_REQUEST)
                 
         id = request.data.get("user")
         user = get_object_or_404(User, id=id)
         if user is None:
+            print("User not exist")
             return Response({"error": "User not exist"}, status=status.HTTP_400_BAD_REQUEST)
         payment.user = user
         payment.save()
@@ -109,18 +111,28 @@ class UploadPayments(APIView):
 
             # Iterar sobre las filas del DataFrame
             data = []
+            existing_references = set(Payment.objects.values_list('reference', flat=True))  # Obtener referencias existentes
+
             for _, row in df[required_columns].iterrows():
+                # Verificar si la referencia ya existe en la base de datos
+                reference = row['Reference']
+                if reference in existing_references:
+                    continue  # Si ya existe, omitir esta fila y pasar a la siguiente
+
                 # Crear un diccionario para cada fila y asignar los valores correspondientes
                 payment_data = {
                     'date': row['Date'],
-                    'reference': row['Reference'],
+                    'reference': reference,
                     'description': row['Description'],
                     'amount': row['Amount'],
                     'balance': row['Balance']
                     }
                 # Agregar el diccionario a la lista de datos
                 data.append(payment_data)
-    
+
+                # Agregar la referencia a las referencias existentes para futuras comprobaciones
+                existing_references.add(reference)
+                
             # Validar y guardar los datos en la tabla de pagos
             serializer = PaymentSerializer(data=data, many=True)
             

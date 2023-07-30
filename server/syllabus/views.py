@@ -51,6 +51,8 @@ class SubjectUpload(APIView):
             for _, row in df[required_columns].iterrows():
                 code = str(row['Code'])
                 prerequisites = str(row['Prerequisites'])
+                if prerequisites == "nan":
+                    prerequisites = ""
 
                 # Verificar si el código ya existe en la base de datos
                 if Subject.objects.filter(code=code).exists():
